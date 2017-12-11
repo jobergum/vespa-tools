@@ -1,0 +1,44 @@
+# Copyright 2017 Yahoo Holdings. Licensed under the terms of the Apache 2.0 license. See LICENSE in the project root.
+
+search tweet {
+
+    document tweet {
+
+	field text type string {
+            	indexing: summary | index
+		summary:dynamic 
+        }
+
+	field user type string {
+		indexing:summary | index | attribute
+		match:word
+	}
+
+        field hashtags type array<string> {
+            	indexing: summary | attribute
+		match:word
+        }
+
+        field timestamp type long {
+            	indexing: summary | attribute
+	 	attribute:fast-search
+        }
+    }
+
+    fieldset default { 
+	fields: text
+    }
+
+    rank-profile fresh inherits default {
+	rank-properties {
+		freshness(timestamp).maxAge : 86400
+		freshness(timestamp).halfResponse : 3600
+	}
+        first-phase {
+            	expression { 
+  			nativeRank(text)*freshness(timestamp).logscale
+		} 
+        }
+	summary-features: nativeRank(text) freshness(timestamp).logscale  age(timestamp) nativeProximity(text)
+    }
+}

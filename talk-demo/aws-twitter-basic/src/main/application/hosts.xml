@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!-- Copyright 2017 Yahoo Holdings. Licensed under the terms of the Apache 2.0 license. See LICENSE in the project root. -->
+
+<hosts>
+  <host name="ip-172-31-4-83">
+    <alias>config</alias>
+    <alias>qrs1</alias>
+  </host>
+
+  <host name="ip-172-31-1-32">
+    <alias>qrs2</alias>
+  </host>
+
+  <host name="ip-172-31-5-249">
+    <alias>search1</alias>
+  </host>
+
+  <host name="ip-172-31-3-93">
+    <alias>search2</alias>
+  </host>
+
+  <host name="ip-172-31-2-147">
+    <alias>search3</alias>
+  </host>
+</hosts>
+
